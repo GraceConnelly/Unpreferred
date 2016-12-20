@@ -41,12 +41,3 @@ public class Main {
 
     }
 }
-package com.theironyard.charlotte;
-
-import spark.Spark;
-
-
-
-        Spark.get("/", ((request, response) -> "Hello, World!"));
-    }
-}
