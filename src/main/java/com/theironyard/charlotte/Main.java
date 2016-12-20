@@ -16,11 +16,6 @@ public class Main {
     public static void main(String[] args) {
         List<Lot> lots = Collections.synchronizedList(new ArrayList<>());
 
-        lots.add(new Lot("Clover St.", 25, 5, 4, false));
-        lots.add(new Lot("Round-A-Bout Ave.", 25, 5, 4, false));
-        lots.add(new Lot("Square Cir.", 25, 5, 4, false));
-        lots.add(new Lot("Ant Ave.", 25, 5, 4, false));
-
         String port = System.getenv("PORT");
         if (port != null) {
             Spark.port(Integer.valueOf(port));
@@ -29,6 +24,11 @@ public class Main {
         Spark.before((request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
         });
+
+        lots.add(new Lot("Clover St.", 25, 5, 4, false));
+        lots.add(new Lot("Round-A-Bout Ave.", 25, 5, 4, false));
+        lots.add(new Lot("Square Cir.", 25, 5, 4, false));
+        lots.add(new Lot("Ant Ave.", 25, 5, 4, false));
 
         Spark.get("/lots",(request, response)->{
             System.out.println("Someone asked for all of the lot info");
