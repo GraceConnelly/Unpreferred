@@ -1,6 +1,5 @@
 package com.theironyard.charlotte;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
 import spark.Spark;
