@@ -1,6 +1,7 @@
 package com.theironyard.charlotte;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by graceconnelly on 12/19/16.
@@ -9,18 +10,18 @@ public class Lot {
     private String id;
     private int capacity;
     private int rate;
-    private int vehicles;
+    private List<Vehicle> vehicles;
     private boolean full;
 
-    public Lot(String id, int capacity, int rate, int vehicles, boolean full) {
+    public Lot(String id, int capacity, int rate, List<Vehicle> vehicles, boolean full) {
         this.id = id;
         this.capacity = capacity;
         this.rate = rate;
         this.vehicles = vehicles;
         this.full = full;
     }
-    public Lot(){
 
+    public Lot() {
     }
 
     public String getId() {
@@ -47,11 +48,11 @@ public class Lot {
         this.rate = rate;
     }
 
-    public int getVehicles() {
+    public List<Vehicle> getVehicles() {
         return vehicles;
     }
 
-    public void setVehicles(int vehicles) {
+    public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
 
