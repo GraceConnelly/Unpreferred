@@ -16,6 +16,9 @@ public class Main {
 //        List<Lot> lots = Collections.synchronizedList(new ArrayList<>());
 //
 //        lots.add(new Lot("Clover Street", 25, 5,new ArrayList<String> ()));
+        Spark.get("/",((request, response) -> {
+            return serializer.serialize("here is some stuff");
+        }));
 
         Spark.get("/lots",(request, response)->{
             System.out.println("Someone asked for all of the lot info");
