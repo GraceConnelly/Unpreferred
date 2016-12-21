@@ -20,7 +20,7 @@ public class Main {
         List<Vehicle> squareCirVehicles =new ArrayList<>();
         List<Vehicle> antAveVehicles = new ArrayList<>();
 
-        List<Lot> lots = Collections.synchronizedList(new ArrayList<>());
+        List<Lot> lots = new ArrayList<>();
 
         String port = System.getenv("PORT");
         if (port != null) {
@@ -33,10 +33,10 @@ public class Main {
         cloverStVehicles.add(new Vehicle("Volkswagen Vanagon",2,60));
         //cloverStVehicles.add(new Vehicle("Volkswagen","Vanagon",2,60));
 
-        lots.add(new Lot("Clover St.", 25,5, cloverStVehicles,false));
-        lots.add(new Lot("Round-A-Bout Ave.", 25, 5, roundAbtAveVehicles, false));
-        lots.add(new Lot("Square Cir.", 25, 5, squareCirVehicles, false));
-        lots.add(new Lot("Ant Ave.", 25, 4, antAveVehicles, false));
+        lots.add(new Lot("Clover St.", 25,25, cloverStVehicles,false));
+        lots.add(new Lot("Round-A-Bout Ave.", 25, 65, roundAbtAveVehicles, false));
+        lots.add(new Lot("Square Cir.", 25, 28, squareCirVehicles, false));
+        lots.add(new Lot("Ant Ave.", 25, 13, antAveVehicles, false));
 
         Spark.get("/lots",(request, response)->{
             System.out.println("Someone asked for all of the lot info");
@@ -45,15 +45,16 @@ public class Main {
         Spark.post("/requestParking", (request, response)-> {
             System.out.println("someone wants to park in a lot somewhere, Oh Man!");
             //get the requested vehicle that the person would like to park and return whether or not they are allowed to park there
-            Vehicle reqVehicle = parser.parse(request.body(),Vehicle.class);
-
-
-
-
-
-
+            VehicleToLot reqstVehicle = parser.parse(request.body(), VehicleToLot.class);
+            for (Lot lot : lots) {
+                if (lot.getId() == reqstVehicle.getId()) {
+                    if (reqstVehicle.getSize() * lot.getRate() <= reqstVehicle.getMoney()
+                            && reqstVehicle.getSize() < lot.getCapacity() - lot.getVehicles().size()){
+                        lot.getVehicles().add(new Vehicle(reqstVehicle.getName(),reqstVehicle.getSize(),reqstVehicle.getMoney()));
+                    }
+                }
+            }
             return "";
         });
-
     }
 }
