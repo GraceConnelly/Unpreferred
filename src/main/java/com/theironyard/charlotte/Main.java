@@ -33,7 +33,6 @@ public class Main {
         cloverStVehicles.add(new Vehicle("Volkswagen","Vanagon",2,60));
         //cloverStVehicles.add(new Vehicle("Volkswagen","Vanagon",2,60));
 
-
         lots.add(new Lot("Clover St.", 25,5, cloverStVehicles,false));
         lots.add(new Lot("Round-A-Bout Ave.", 25, 5, roundAbtAveVehicles, false));
         lots.add(new Lot("Square Cir.", 25, 5, squareCirVehicles, false));
@@ -41,13 +40,13 @@ public class Main {
 
         Spark.get("/lots",(request, response)->{
             System.out.println("Someone asked for all of the lot info");
-            return serializer.serialize(lots);
+            return serializer.deep(true).serialize(lots);
                 });
         Spark.post("/requestParking", (request, response)-> {
             System.out.println("someone wants to park in a lot somewhere, Oh Man!");
+            System.out.println("");
 
             return "";
         });
-
     }
 }
