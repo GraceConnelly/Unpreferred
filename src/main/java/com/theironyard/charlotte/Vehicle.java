@@ -4,33 +4,22 @@ package com.theironyard.charlotte;
  * Created by graceconnelly on 12/19/16.
  */
 public class Vehicle {
-    private String make;
-    private String model;
+    private String name;
     private int size;
     private int money;
 
-    public Vehicle(String make, String model, int spots, int ownerFunds) {
-        this.make = make;
-        this.model = model;
-        this.size = spots;
-        this.money = ownerFunds;
-    }
-    public Vehicle(){
-
+    public Vehicle(String name, int size, int money) {
+        this.name = name;
+        this.size = size;
+        this.money = money;
     }
 
-    public String getMake() {
-        return make;
+    public String getName() {
+        return name;
     }
 
-    public void setMake(String make) {this.make = make;}
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getSize() {
@@ -49,4 +38,3 @@ public class Vehicle {
         this.money = money;
     }
 }
-

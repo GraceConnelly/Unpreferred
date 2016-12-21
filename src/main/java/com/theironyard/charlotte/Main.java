@@ -15,10 +15,10 @@ public class Main {
 
     public static void main(String[] args) {
         //initallizes arrays for vehicles and lots
-        List<Vehicle> cloverStVehicles = Collections.synchronizedList(new ArrayList<>());
-        List<Vehicle> roundAbtAveVehicles = Collections.synchronizedList(new ArrayList<>());
-        List<Vehicle> squareCirVehicles =Collections.synchronizedList(new ArrayList<>());
-        List<Vehicle> antAveVehicles = Collections.synchronizedList(new ArrayList<>());
+        List<Vehicle> cloverStVehicles = new ArrayList<>();
+        List<Vehicle> roundAbtAveVehicles = new ArrayList<>();
+        List<Vehicle> squareCirVehicles =new ArrayList<>();
+        List<Vehicle> antAveVehicles = new ArrayList<>();
 
         List<Lot> lots = Collections.synchronizedList(new ArrayList<>());
 
@@ -30,7 +30,7 @@ public class Main {
         Spark.before((request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
         });
-        cloverStVehicles.add(new Vehicle("Volkswagen","Vanagon",2,60));
+        cloverStVehicles.add(new Vehicle("Volkswagen Vanagon",2,60));
         //cloverStVehicles.add(new Vehicle("Volkswagen","Vanagon",2,60));
 
         lots.add(new Lot("Clover St.", 25,5, cloverStVehicles,false));
@@ -44,9 +44,16 @@ public class Main {
                 });
         Spark.post("/requestParking", (request, response)-> {
             System.out.println("someone wants to park in a lot somewhere, Oh Man!");
-            System.out.println("");
+            //get the requested vehicle that the person would like to park and return whether or not they are allowed to park there
+            Vehicle reqVehicle = parser.parse(request.body(),Vehicle.class);
+
+
+
+
+
 
             return "";
         });
+
     }
 }
