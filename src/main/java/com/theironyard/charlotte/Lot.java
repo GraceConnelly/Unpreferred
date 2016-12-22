@@ -1,6 +1,5 @@
 package com.theironyard.charlotte;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,14 +10,14 @@ public class Lot {
     private int capacity;
     private int rate;
     private List<Vehicle> vehicles;
-    private boolean full;
+    private int count;
 
-    public Lot(String id, int capacity, int rate, List<Vehicle> vehicles, boolean full) {
+    public Lot(String id, int capacity, int rate, List<Vehicle> vehicles, int count) {
         this.id = id;
         this.capacity = capacity;
         this.rate = rate;
         this.vehicles = vehicles;
-        this.full = full;
+        this.count = count;
     }
 
     public Lot() {
@@ -56,15 +55,17 @@ public class Lot {
         this.vehicles = vehicles;
     }
 
-    public boolean isFull() {
-        return full;
+    public int getCount() {
+        return count;
     }
 
-    public void setFull(boolean full) {
-        this.full = full;
+    public void setCount(int count) {
+        this.count = count;
     }
 
+    //method to actually add a vehicle to a lot
     public void addVehicle (VehicleToLot newVehicle){
         getVehicles().add(new Vehicle(newVehicle.getName(),newVehicle.getSize(),newVehicle.getMoney()));
     }
+
 }

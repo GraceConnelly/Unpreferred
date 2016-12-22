@@ -31,13 +31,13 @@ public class Main {
         Spark.before((request, response) -> {
             response.header("Access-Control-Allow-Origin", "*");
         });
-        cloverStVehicles.add(new Vehicle("Volkswagen Vanagon", 2, 60));
+        //cloverStVehicles.add(new Vehicle("Volkswagen Vanagon", 2, 60));
         //cloverStVehicles.add(new Vehicle("Volkswagen","Vanagon",2,60));
 
-        lots.add(new Lot("Clover St.", 25, 5, cloverStVehicles, false));
-        lots.add(new Lot("Round-A-Bout Ave.", 25, 5, roundAbtAveVehicles, false));
-        lots.add(new Lot("Square Cir.", 25, 2, squareCirVehicles, false));
-        lots.add(new Lot("Ant Ave.", 25, 3, antAveVehicles, false));
+        lots.add(new Lot("Clover St.", 25, 5, cloverStVehicles, 25));
+        lots.add(new Lot("Round-A-Bout Ave.", 25, 5, roundAbtAveVehicles, 25));
+        lots.add(new Lot("Square Cir.", 25, 2, squareCirVehicles, 25));
+        lots.add(new Lot("Ant Ave.", 25, 3, antAveVehicles, 25));
 
         Spark.get("/lots", (request, response) -> {
             System.out.println("Someone asked for all of the lot info");
@@ -62,7 +62,8 @@ public class Main {
 
     static void validateAndPark(VehicleToLot newVehicle, Lot thelot){
         if(thelot.getRate()*newVehicle.getSize() <= newVehicle.getMoney() && remainingCapacity(thelot) >= newVehicle.getSize()){
-         thelot.addVehicle(newVehicle);
+            thelot.addVehicle(newVehicle);
+            thelot.setCount(remainingCapacity(thelot));
         }
     }
     static int remainingCapacity (Lot theLot){
