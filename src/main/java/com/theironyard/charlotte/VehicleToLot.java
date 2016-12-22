@@ -15,6 +15,7 @@ public class VehicleToLot {
         this.size = size;
         this.money = money;
     }
+    public VehicleToLot(){}
 
     public String getId() {
         return id;

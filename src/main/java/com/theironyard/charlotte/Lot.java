@@ -63,4 +63,8 @@ public class Lot {
     public void setFull(boolean full) {
         this.full = full;
     }
+
+    public void addVehicle (VehicleToLot newVehicle){
+        getVehicles().add(new Vehicle(newVehicle.getName(),newVehicle.getSize(),newVehicle.getMoney()));
+    }
 }
